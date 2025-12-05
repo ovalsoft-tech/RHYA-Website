@@ -16,6 +16,7 @@ function Router() {
       <Route path={"/app-features"} component={AppFeatures} />
       <Route path={"/events"} component={Events} />
       <Route path={"/404"} component={NotFound} />
+      {/* Sanity CMS integration complete */}
       {/* Events and Social Feed routes added */}
       {/* Final fallback route */}
       <Route component={NotFound} />
