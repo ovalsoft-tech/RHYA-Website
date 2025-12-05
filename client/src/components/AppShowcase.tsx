@@ -1,7 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Smartphone, Shield, Trophy, Users, BarChart3 } from "lucide-react";
+import { getMobileOS, trackDownloadEvent } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export default function AppShowcase() {
+  const [os, setOs] = useState<"ios" | "android" | "other">("other");
+
+  useEffect(() => {
+    setOs(getMobileOS());
+  }, []);
+
   return (
     <section className="py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -62,8 +70,9 @@ export default function AppShowcase() {
             <div className="flex flex-col sm:flex-row gap-6 pt-6">
               <a 
                 href="#" 
-                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                className={`transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95 ${os === 'ios' ? 'ring-4 ring-primary/20 rounded-lg scale-110' : 'opacity-90 hover:opacity-100'}`}
                 aria-label="Download on the App Store"
+                onClick={() => trackDownloadEvent('ios', 'home')}
               >
                 <img 
                   src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
@@ -73,8 +82,9 @@ export default function AppShowcase() {
               </a>
               <a 
                 href="#" 
-                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                className={`transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95 ${os === 'android' ? 'ring-4 ring-primary/20 rounded-lg scale-110' : 'opacity-90 hover:opacity-100'}`}
                 aria-label="Get it on Google Play"
+                onClick={() => trackDownloadEvent('android', 'home')}
               >
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
