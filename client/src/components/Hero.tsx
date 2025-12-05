@@ -34,7 +34,7 @@ export default function Hero() {
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 h-14 rounded-full shadow-lg shadow-accent/20 transition-all hover:scale-105"
-              onClick={() => window.open("https://web.rhp.com.ng/", "_blank")}
+              onClick={() => window.open("#", "_blank")}
             >
               Become an Ambassador
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -43,8 +43,9 @@ export default function Hero() {
               size="lg" 
               variant="outline" 
               className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 h-14 rounded-full"
+              onClick={() => window.location.href = "/app-features"}
             >
-              Learn More
+              Explore App
             </Button>
           </div>
 
@@ -66,6 +67,7 @@ export default function Hero() {
               src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=2574&auto=format&fit=crop" 
               alt="Nigerian youth collaborating" 
               className="w-full h-auto object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-8">
               <div className="text-white">

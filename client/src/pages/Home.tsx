@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import PriorityAreas from "@/components/PriorityAreas";
+import AppShowcase from "@/components/AppShowcase";
 import Benefits from "@/components/Benefits";
 import Footer from "@/components/Footer";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <AppShowcase />
         <PriorityAreas />
         <Benefits />
         

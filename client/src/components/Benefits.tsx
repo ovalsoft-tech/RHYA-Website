@@ -24,11 +24,13 @@ export default function Benefits() {
                 src="https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=2574&auto=format&fit=crop" 
                 alt="Nigerian youth leadership" 
                 className="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8"
+                loading="lazy"
               />
               <img 
                 src="https://images.unsplash.com/photo-1572631382901-cf1a0a6087cb?q=80&w=2582&auto=format&fit=crop" 
                 alt="Collaborative meeting in Nigeria" 
                 className="rounded-2xl shadow-lg w-full h-64 object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -55,7 +57,7 @@ export default function Benefits() {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-white font-bold text-lg px-10 h-14 rounded-full shadow-lg shadow-primary/20"
-                onClick={() => window.open("https://web.rhp.com.ng/", "_blank")}
+                onClick={() => window.open("#", "_blank")}
               >
                 Join the Movement
               </Button>

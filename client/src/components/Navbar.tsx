@@ -83,7 +83,7 @@ export default function Navbar() {
           ))}
           <Button 
             className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-6"
-            onClick={() => window.open("https://web.rhp.com.ng/", "_blank")}
+            onClick={() => window.open("#", "_blank")}
           >
             Join Now
           </Button>
@@ -119,7 +119,7 @@ export default function Navbar() {
             ))}
             <Button 
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-8 py-6 text-lg mt-4"
-              onClick={() => window.open("https://web.rhp.com.ng/", "_blank")}
+              onClick={() => window.open("#", "_blank")}
             >
               Join Now
             </Button>
