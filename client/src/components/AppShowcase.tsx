@@ -59,32 +59,29 @@ export default function AppShowcase() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button 
-                className="bg-black hover:bg-gray-800 text-white h-14 px-6 rounded-xl flex items-center gap-3 transition-transform hover:scale-105"
-                onClick={() => window.open("#", "_blank")}
+            <div className="flex flex-col sm:flex-row gap-6 pt-6">
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                aria-label="Download on the App Store"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.74 1.18 0 2.21-.93 3.69-.93 2.4.16 3.37 1.62 3.42 1.67-3.12 1.8-2.57 6.52.31 7.67-.24.79-.54 1.54-.95 2.27-.64 1.15-1.29 2.19-2.55 2.19zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-                </svg>
-                <div className="text-left">
-                  <div className="text-[10px] font-medium opacity-80">Download on the</div>
-                  <div className="text-sm font-bold leading-none">App Store</div>
-                </div>
-              </Button>
-              
-              <Button 
-                className="bg-black hover:bg-gray-800 text-white h-14 px-6 rounded-xl flex items-center gap-3 transition-transform hover:scale-105"
-                onClick={() => window.open("#", "_blank")}
+                <img 
+                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                  alt="Download on the App Store" 
+                  className="h-14 w-auto"
+                />
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                aria-label="Get it on Google Play"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                  <path d="M3.609 1.814L13.792 12 3.61 22.186c-.185.185-.425.207-.556.076-.131-.131-.109-.371.076-.556L12.958 12 3.129 2.171c-.185-.185-.207-.425-.076-.556.131-.131.371-.109.556.076zM14.625 12L4.444 1.818c.556-.278 1.204-.278 1.759 0l11.704 6.759c.556.315.907.907.907 1.537s-.352 1.222-.907 1.537L6.204 18.37c-.556.278-1.204.278-1.759 0L14.625 12z"/>
-                </svg>
-                <div className="text-left">
-                  <div className="text-[10px] font-medium opacity-80">GET IT ON</div>
-                  <div className="text-sm font-bold leading-none">Google Play</div>
-                </div>
-              </Button>
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                  alt="Get it on Google Play" 
+                  className="h-14 w-auto"
+                />
+              </a>
             </div>
           </div>
 
