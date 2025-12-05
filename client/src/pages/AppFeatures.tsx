@@ -2,16 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Shield, Trophy, Users, BarChart3, Smartphone, Globe, Zap, Lock } from "lucide-react";
-import { getMobileOS, trackDownloadEvent } from "@/lib/utils";
-import { useEffect, useState } from "react";
 
 export default function AppFeatures() {
-  const [os, setOs] = useState<"ios" | "android" | "other">("other");
-
-  useEffect(() => {
-    setOs(getMobileOS());
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Navbar />
@@ -24,22 +16,17 @@ export default function AppFeatures() {
               <Smartphone className="h-4 w-4" />
               <span>Version 1.0 Available Now</span>
             </div>
-            <div className="mb-8 flex justify-center">
-              <img 
-                src="/images/social-network.png" 
-                alt="National Ambassador Network Map" 
-                className="w-full max-w-3xl h-auto rounded-2xl shadow-2xl border border-white/10"
-              />
-            </div>
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+              A Strategic Digital Arsenal for <span className="text-primary">2027</span>
+            </h1>
             <p className="text-xl text-gray-300 mb-10 leading-relaxed">
               The Renewed Hope Youth Ambassadors application is a revolutionary platform designed to secure overwhelming victory through data-driven mobilization and grassroots engagement.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6 mt-8">
               <a 
                 href="#" 
-                className={`transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95 ${os === 'ios' ? 'ring-4 ring-white/50 rounded-lg scale-110' : 'opacity-90 hover:opacity-100'}`}
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
                 aria-label="Download on the App Store"
-                onClick={() => trackDownloadEvent('ios', 'app_page')}
               >
                 <img 
                   src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
@@ -49,9 +36,8 @@ export default function AppFeatures() {
               </a>
               <a 
                 href="#" 
-                className={`transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95 ${os === 'android' ? 'ring-4 ring-white/50 rounded-lg scale-110' : 'opacity-90 hover:opacity-100'}`}
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
                 aria-label="Get it on Google Play"
-                onClick={() => trackDownloadEvent('android', 'app_page')}
               >
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
