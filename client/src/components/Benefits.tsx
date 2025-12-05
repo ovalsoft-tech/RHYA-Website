@@ -21,13 +21,13 @@ export default function Benefits() {
             
             <div className="relative z-10 grid grid-cols-2 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" 
-                alt="Youth leadership" 
+                src="https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=2574&auto=format&fit=crop" 
+                alt="Nigerian youth leadership" 
                 className="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8"
               />
               <img 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" 
-                alt="Collaborative meeting" 
+                src="https://images.unsplash.com/photo-1572631382901-cf1a0a6087cb?q=80&w=2582&auto=format&fit=crop" 
+                alt="Collaborative meeting in Nigeria" 
                 className="rounded-2xl shadow-lg w-full h-64 object-cover"
               />
             </div>

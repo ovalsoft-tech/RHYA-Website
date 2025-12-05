@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-primary">
       {/* Background Pattern */}
       <div className="absolute inset-0 z-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=3432&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=3387&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
         <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] rounded-full bg-accent blur-[100px]"></div>
         <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-secondary blur-[100px]"></div>
       </div>
@@ -63,8 +63,8 @@ export default function Hero() {
         <div className="relative hidden md:block">
           <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 transform rotate-3 hover:rotate-0 transition-transform duration-500">
             <img 
-              src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=2000&auto=format&fit=crop" 
-              alt="Young Nigerians collaborating" 
+              src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=2574&auto=format&fit=crop" 
+              alt="Nigerian youth collaborating" 
               className="w-full h-auto object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-8">
