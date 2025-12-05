@@ -88,7 +88,7 @@ export default function Navbar() {
               }}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-accent relative group",
-                scrolled || location !== "/" ? "text-gray-800" : "text-white"
+                scrolled || location !== "/" ? "text-gray-800" : "text-white drop-shadow-md"
               )}
             >
               {link.name}
@@ -112,7 +112,7 @@ export default function Navbar() {
           {isOpen ? (
             <X className={cn("h-6 w-6", "text-gray-800")} />
           ) : (
-            <Menu className={cn("h-6 w-6", scrolled || location !== "/" ? "text-gray-800" : "text-white")} />
+            <Menu className={cn("h-6 w-6", scrolled || location !== "/" ? "text-gray-800" : "text-white drop-shadow-md")} />
           )}
         </button>
 
