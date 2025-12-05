@@ -11,24 +11,24 @@ export default function AppShowcase() {
   }, []);
 
   return (
-    <section className="py-24 bg-gray-50 overflow-hidden">
+    <section className="py-16 md:py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary">
               <Smartphone className="h-4 w-4" />
               <span>Official Mobile App</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               The Digital Arsenal for <span className="text-primary">Youth Mobilization</span>
             </h2>
             
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
               The Renewed Hope Youth Ambassadors app is the central nervous system of our movement. Connect, collaborate, and campaign with precision using our state-of-the-art digital platform.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               <div className="flex gap-4">
                 <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100 h-fit">
                   <Shield className="h-6 w-6 text-primary" />
@@ -95,7 +95,7 @@ export default function AppShowcase() {
             </div>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end">
+          <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10 w-[300px] md:w-[350px]">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[3rem] blur-3xl opacity-30 transform rotate-6 scale-110"></div>
               <img 

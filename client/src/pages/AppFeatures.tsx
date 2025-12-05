@@ -24,9 +24,13 @@ export default function AppFeatures() {
               <Smartphone className="h-4 w-4" />
               <span>Version 1.0 Available Now</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-              A Strategic Digital Arsenal for <span className="text-primary">2027</span>
-            </h1>
+            <div className="mb-8 flex justify-center">
+              <img 
+                src="/images/social-network.png" 
+                alt="National Ambassador Network Map" 
+                className="w-full max-w-3xl h-auto rounded-2xl shadow-2xl border border-white/10"
+              />
+            </div>
             <p className="text-xl text-gray-300 mb-10 leading-relaxed">
               The Renewed Hope Youth Ambassadors application is a revolutionary platform designed to secure overwhelming victory through data-driven mobilization and grassroots engagement.
             </p>
