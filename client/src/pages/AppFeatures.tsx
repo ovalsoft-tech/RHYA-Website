@@ -22,13 +22,29 @@ export default function AppFeatures() {
             <p className="text-xl text-gray-300 mb-10 leading-relaxed">
               The Renewed Hope Youth Ambassadors application is a revolutionary platform designed to secure overwhelming victory through data-driven mobilization and grassroots engagement.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button className="bg-primary hover:bg-primary/90 text-white h-14 px-8 rounded-full text-lg font-bold">
-                Download App
-              </Button>
-              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 h-14 px-8 rounded-full text-lg font-bold">
-                View Documentation
-              </Button>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mt-8">
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                aria-label="Download on the App Store"
+              >
+                <img 
+                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                  alt="Download on the App Store" 
+                  className="h-14 w-auto"
+                />
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105 focus:scale-105 active:scale-95"
+                aria-label="Get it on Google Play"
+              >
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                  alt="Get it on Google Play" 
+                  className="h-14 w-auto"
+                />
+              </a>
             </div>
           </div>
         </section>
