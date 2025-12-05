@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { useIsMobile } from "@/hooks/useMobile";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [location, setLocation] = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +65,7 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled || isOpen || location !== "/"
+        scrolled || isOpen || location !== "/" || isMobile
           ? "bg-white/95 backdrop-blur-md shadow-md py-3"
           : "bg-transparent py-5"
       )}
@@ -88,7 +90,7 @@ export default function Navbar() {
               }}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-accent relative group",
-                scrolled || location !== "/" ? "text-gray-800" : "text-white drop-shadow-md"
+                scrolled || location !== "/" || isMobile ? "text-gray-800" : "text-white drop-shadow-md"
               )}
             >
               {link.name}
@@ -112,7 +114,7 @@ export default function Navbar() {
           {isOpen ? (
             <X className={cn("h-6 w-6", "text-gray-800")} />
           ) : (
-            <Menu className={cn("h-6 w-6", scrolled || location !== "/" ? "text-gray-800" : "text-white drop-shadow-md")} />
+            <Menu className={cn("h-6 w-6", scrolled || location !== "/" || isMobile ? "text-gray-800" : "text-white drop-shadow-md")} />
           )}
         </button>
 
