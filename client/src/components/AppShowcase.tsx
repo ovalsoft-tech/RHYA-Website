@@ -98,12 +98,19 @@ export default function AppShowcase() {
           <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10 w-[300px] md:w-[350px]">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[3rem] blur-3xl opacity-30 transform rotate-6 scale-110"></div>
-              <img 
-                src="/images/rhya_app_hero.webp" 
-                alt="RHYA App Interface" 
-                className="relative z-10 w-full h-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
+              <div className="relative z-10 w-full h-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white transform hover:scale-105 transition-transform duration-500 bg-black">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="w-full h-full object-cover"
+                  poster="/images/rhya_app_hero.webp"
+                >
+                  <source src="/videos/app-demo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
             
             {/* Floating Stats Card */}
