@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import AppFeatures from "./pages/AppFeatures";
 import Events from "./pages/Events";
+import News from "./pages/News";
 
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/app-features"} component={AppFeatures} />
       <Route path={"/events"} component={Events} />
+      <Route path={"/news"} component={News} />
       <Route path={"/404"} component={NotFound} />
       {/* Logo background transparency fixed */}
       {/* Sanity CMS integration complete */}
