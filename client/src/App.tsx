@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import AppFeatures from "./pages/AppFeatures";
 import Events from "./pages/Events";
 import News from "./pages/News";
+import NewsPost from "./pages/NewsPost";
 
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path={"/app-features"} component={AppFeatures} />
       <Route path={"/events"} component={Events} />
       <Route path={"/news"} component={News} />
+      <Route path={"/news/:slug"} component={NewsPost} />
       <Route path={"/404"} component={NotFound} />
       {/* Logo background transparency fixed */}
       {/* Sanity CMS integration complete */}
