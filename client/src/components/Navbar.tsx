@@ -66,7 +66,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled || isOpen || location !== "/" || isMobile
-          ? "bg-white/95 backdrop-blur-md shadow-md py-3"
+          ? isMobile ? "bg-white shadow-md py-3" : "bg-white/95 backdrop-blur-md shadow-md py-3"
           : "bg-transparent py-5"
       )}
     >
