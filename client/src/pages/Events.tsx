@@ -114,8 +114,8 @@ export default function Events() {
           setEvents(fallbackEvents);
         }
       } catch (err) {
-        console.error("Failed to fetch events:", err);
-        setError("Failed to load events. Showing upcoming schedule.");
+        console.warn("Sanity fetch failed (likely CORS or network issue). Using fallback data.", err);
+        setError("Could not connect to live schedule. Showing preview events.");
         setEvents(fallbackEvents);
       } finally {
         setLoading(false);
