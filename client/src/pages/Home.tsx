@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import PriorityAreas from "@/components/PriorityAreas";
 import AppShowcase from "@/components/AppShowcase";
 import Benefits from "@/components/Benefits";
+import SocialFeed from "@/components/SocialFeed";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <AppShowcase />
         <PriorityAreas />
         <Benefits />
+        <SocialFeed />
         
         {/* CTA Section */}
         <section className="py-20 bg-primary relative overflow-hidden">

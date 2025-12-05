@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,21 +17,45 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when location changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About", href: "#about" },
-    { name: "Priority Areas", href: "#priority-areas" },
-    { name: "Benefits", href: "#benefits" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Priority Areas", href: "/#priority-areas" },
+    { name: "Benefits", href: "/#benefits" },
+    { name: "Events", href: "/events" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+    
+    if (href.startsWith("/#")) {
+      // If we're not on home page, navigate to home first
+      if (location !== "/") {
+        setLocation("/");
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const elementId = href.substring(2);
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        // Already on home page, just scroll
+        const elementId = href.substring(2);
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       }
+    } else {
+      setLocation(href);
     }
   };
 
@@ -39,32 +63,21 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-md py-3"
+        scrolled || isOpen
+          ? "bg-white/95 backdrop-blur-md shadow-md py-3"
           : "bg-transparent py-5"
       )}
     >
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 z-50">
-          <div className="h-12 w-auto">
-            <svg viewBox="0 0 1583 1000" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-auto">
-              <path d="M997.409 259.286C996.22 264.441 990.272 290.215 984.324 317.179L973.617 365.556L959.739 352.074L945.464 338.592L877.261 403.622C832.453 446.448 806.282 468.653 800.731 468.653C795.576 468.653 781.301 458.343 765.44 442.879C750.768 428.604 736.493 417.104 733.321 417.104C730.545 417.104 720.235 423.052 709.925 430.19C678.996 452.396 678.6 450.809 707.943 421.07L736.096 392.52L753.94 402.829C763.853 408.381 776.146 413.139 781.301 412.743C789.628 412.346 789.628 411.949 778.525 408.777C772.181 406.795 762.267 400.847 757.112 395.295C740.458 377.848 732.131 381.417 685.737 427.018L643.705 468.653H614.362H584.622L648.067 405.208C682.565 370.71 716.27 340.178 722.218 337.402C736.493 331.454 744.82 336.609 775.353 371.504C788.042 385.779 800.731 397.278 803.903 397.278C810.644 397.278 907.794 307.266 907.794 300.921C907.794 298.542 902.242 291.008 895.501 283.871L883.209 271.182L922.465 264.441C943.878 260.475 967.669 256.114 975.204 254.527C998.202 249.373 1000.18 249.769 997.409 259.286Z" fill="#00B050"/>
-              <path d="M757.112 395.295C765.329 403.903 775.451 408.183 785.86 411.157L803.903 397.278C800.731 397.278 788.042 385.779 775.353 371.504C744.82 336.609 736.493 331.454 722.218 337.402C716.27 340.178 682.565 370.71 648.067 405.208L584.622 468.653H614.362H643.705L685.737 427.018C732.131 381.417 740.458 377.848 757.112 395.295Z" fill="#1A1F3A"/>
-              <path d="M833.643 294.18C853.469 294.18 863.779 266.423 849.108 253.338C826.109 232.718 794.783 264.44 816.592 286.25C820.954 290.611 828.885 294.18 833.643 294.18Z" fill="#00B050"/>
-              <path d="M857.831 310.041C844.349 310.041 828.092 308.059 821.747 305.68C815.799 303.697 802.714 294.18 793.197 285.06C783.68 275.94 776.939 271.181 777.732 274.75C784.87 295.37 792.801 331.454 794.783 354.453C796.369 369.124 799.145 382.606 801.524 383.796C803.507 384.985 822.937 369.124 843.953 348.108L882.813 310.041H857.831Z" fill="#00B050"/>
-              <path d="M638.154 312.024C655.998 328.282 681.772 304.887 668.29 284.267C661.153 273.561 643.309 270.785 634.982 279.112C627.844 286.25 629.43 304.094 638.154 312.024Z" fill="#00B050"/>
-              <path d="M659.963 374.676C676.221 359.211 681.375 350.488 687.72 328.679C692.478 314.007 695.651 302.111 695.651 302.111C695.254 302.111 690.099 307.663 683.755 314.007C672.255 325.903 648.067 335.42 637.757 332.247C634.585 331.454 621.5 329.472 608.414 328.282L584.622 325.903L598.501 333.437C618.724 344.54 633.395 361.591 636.964 379.038L640.136 394.106L659.963 374.676Z" fill="#00B050"/>
-              <path d="M765.043 256.113C766.53 247.588 759.095 232.718 753.147 229.744C738.872 219.831 713.494 234.304 713.494 252.545C713.494 265.234 726.58 278.319 739.269 278.319C750.372 278.319 765.043 265.63 765.043 256.113Z" fill="#00D4FF"/>
-              <path d="M782.491 347.315C777.732 316.386 772.577 302.507 762.268 294.577C742.838 279.112 719.046 287.836 705.96 315.196C701.202 324.713 697.633 333.437 697.633 334.626C697.633 336.212 704.374 333.437 712.701 329.075C732.528 317.972 745.217 321.541 767.026 344.539L784.473 362.78L782.491 347.315Z" fill="#00D4FF"/>
-              <path d="M509.782 565.653V492.832H543.072C549.73 492.832 555.451 493.907 560.237 496.057C565.091 498.207 568.836 501.328 571.472 505.42C574.107 509.442 575.425 514.228 575.425 519.776C575.425 525.255 574.107 530.006 571.472 534.028C568.836 537.981 565.091 541.033 560.237 543.183C555.451 545.263 549.73 546.304 543.072 546.304H521.225L530.38 537.669V565.653H509.782ZM554.827 565.653L536.726 539.126H558.676L576.881 565.653H554.827ZM530.38 539.854L521.225 530.387H541.823C546.123 530.387 549.313 529.451 551.394 527.578C553.544 525.706 554.619 523.105 554.619 519.776C554.619 516.378 553.544 513.742 551.394 511.87C549.313 509.997 546.123 509.061 541.823 509.061H521.225L530.38 499.594V539.854ZM605.722 521.024H639.532V536.421H605.722V521.024ZM607.178 549.737H645.253V565.653H586.788V492.832H643.901V508.749H607.178V549.737ZM656.683 565.653V492.832H673.64L713.796 541.31H705.785V492.832H725.967V565.653H709.01L668.855 517.175H676.865V565.653H656.683ZM759.43 521.024H793.24V536.421H759.43V521.024ZM760.886 549.737H798.961V565.653H740.496V492.832H797.609V508.749H760.886V549.737ZM827.373 565.653L803.758 492.832H824.98L844.85 555.874H834.135L855.045 492.832H873.978L893.744 555.874H883.445L903.939 492.832H923.6L899.985 565.653H877.931L861.078 512.078H867.008L849.427 565.653H827.373ZM949.914 521.024H983.724V536.421H949.914V521.024ZM951.37 549.737H989.445V565.653H930.981V492.832H988.093V508.749H951.37V549.737ZM1000.88 565.653V492.832H1035.31C1043.35 492.832 1050.43 494.323 1056.53 497.306C1062.63 500.288 1067.39 504.484 1070.78 509.893C1074.25 515.303 1075.99 521.753 1075.99 529.243C1075.99 536.664 1074.25 543.113 1070.78 548.592C1067.39 554.002 1062.63 558.198 1056.53 561.18C1050.43 564.162 1043.35 565.653 1035.31 565.653H1000.88ZM1021.47 549.216H1034.48C1038.64 549.216 1042.24 548.454 1045.3 546.928C1048.42 545.333 1050.84 543.044 1052.58 540.062C1054.31 537.01 1055.18 533.404 1055.18 529.243C1055.18 525.012 1054.31 521.406 1052.58 518.424C1050.84 515.441 1048.42 513.187 1045.3 511.662C1042.24 510.067 1038.64 509.269 1034.48 509.269H1021.47V549.216Z" fill="#1A1F3A"/>
-              <path d="M603.108 582.974H640.871V716.478H603.108V582.974ZM551.613 716.478H513.85V582.974H551.613V716.478ZM605.778 664.412H548.943V633.133H605.778V664.412ZM734.832 719.149C724.152 719.149 714.298 717.432 705.27 713.999C696.243 710.566 688.36 705.734 681.621 699.504C675.009 693.147 669.86 685.772 666.173 677.381C662.485 668.989 660.642 659.771 660.642 649.726C660.642 639.681 662.485 630.463 666.173 622.071C669.86 613.68 675.009 606.369 681.621 600.139C688.36 593.781 696.243 588.886 705.27 585.453C714.298 582.02 724.152 580.303 734.832 580.303C745.64 580.303 755.494 582.02 764.394 585.453C773.422 588.886 781.241 593.781 787.853 600.139C794.464 606.369 799.614 613.68 803.301 622.071C807.116 630.463 809.023 639.681 809.023 649.726C809.023 659.771 807.116 669.052 803.301 677.571C799.614 685.963 794.464 693.274 787.853 699.504C781.241 705.734 773.422 710.566 764.394 713.999C755.494 717.432 745.64 719.149 734.832 719.149ZM734.832 687.87C739.918 687.87 744.623 686.98 748.946 685.2C753.396 683.42 757.21 680.877 760.389 677.571C763.695 674.138 766.238 670.07 768.018 665.365C769.925 660.661 770.879 655.448 770.879 649.726C770.879 643.877 769.925 638.664 768.018 634.087C766.238 629.382 763.695 625.377 760.389 622.071C757.21 618.638 753.396 616.032 748.946 614.252C744.623 612.472 739.918 611.582 734.832 611.582C729.746 611.582 724.978 612.472 720.528 614.252C716.205 616.032 712.391 618.638 709.085 622.071C705.906 625.377 703.363 629.382 701.456 634.087C699.676 638.664 698.786 643.877 698.786 649.726C698.786 655.448 699.676 660.661 701.456 665.365C703.363 670.07 705.906 674.138 709.085 677.571C712.391 680.877 716.205 683.42 720.528 685.2C724.978 686.98 729.746 687.87 734.832 687.87ZM828.801 716.478V582.974H889.832C902.038 582.974 912.528 584.944 921.301 588.886C930.201 592.828 937.067 598.549 941.899 606.051C946.73 613.425 949.146 622.199 949.146 632.37C949.146 642.415 946.73 651.125 941.899 658.499C937.067 665.874 930.201 671.595 921.301 675.664C912.528 679.606 902.038 681.576 889.832 681.576H849.78L866.564 665.174V716.478H828.801ZM866.564 669.18L849.78 651.824H887.543C895.426 651.824 901.275 650.107 905.09 646.674C909.031 643.241 911.002 638.473 911.002 632.37C911.002 626.14 909.031 621.309 905.09 617.876C901.275 614.443 895.426 612.726 887.543 612.726H849.78L866.564 595.37V669.18ZM1002.27 634.659H1064.25V662.886H1002.27V634.659ZM1004.94 687.298H1074.74V716.478H967.558V582.974H1072.26V612.154H1004.94V687.298Z" fill="#1A1F3A"/>
-            </svg>
+        <Link href="/" className="flex items-center gap-2 z-50 relative">
+          <div className="h-10 md:h-12 w-auto">
+            <img src="/upload/Logo-1.svg" alt="RHYA Logo" className="h-full w-auto" />
           </div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -74,15 +87,16 @@ export default function Navbar() {
                 handleNavClick(link.href);
               }}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
+                "text-sm font-medium transition-colors hover:text-accent relative group",
                 scrolled ? "text-gray-800" : "text-white"
               )}
             >
               {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
             </a>
           ))}
           <Button 
-            className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-6"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
             onClick={() => window.open("#", "_blank")}
           >
             Join Now
@@ -91,19 +105,25 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden z-50"
+          className="lg:hidden z-50 p-2 rounded-full hover:bg-black/5 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
           {isOpen ? (
-            <X className={cn("h-6 w-6", scrolled ? "text-gray-800" : "text-white")} />
+            <X className={cn("h-6 w-6", "text-gray-800")} />
           ) : (
             <Menu className={cn("h-6 w-6", scrolled ? "text-gray-800" : "text-white")} />
           )}
         </button>
 
         {/* Mobile Nav Overlay */}
-        {isOpen && (
-          <div className="fixed inset-0 bg-primary z-40 flex flex-col items-center justify-center gap-8 md:hidden">
+        <div 
+          className={cn(
+            "fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 lg:hidden transition-all duration-300 ease-in-out",
+            isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+          )}
+        >
+          <div className="flex flex-col items-center gap-6 w-full px-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -112,19 +132,19 @@ export default function Navbar() {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="text-2xl font-bold text-white hover:text-accent transition-colors"
+                className="text-2xl font-bold text-gray-900 hover:text-primary transition-colors w-full text-center py-2 border-b border-gray-100"
               >
                 {link.name}
               </a>
             ))}
             <Button 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-8 py-6 text-lg mt-4"
+              className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-10 py-6 text-lg mt-4 w-full max-w-xs shadow-xl"
               onClick={() => window.open("#", "_blank")}
             >
               Join Now
             </Button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
