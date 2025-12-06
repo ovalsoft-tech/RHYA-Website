@@ -4,7 +4,69 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 
-// X API helper function
+// ============================================
+// Server-Side Cache for X API
+// ============================================
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+  expiresAt: number;
+}
+
+class SimpleCache<T> {
+  private cache: Map<string, CacheEntry<T>> = new Map();
+  private ttlMs: number;
+
+  constructor(ttlMinutes: number = 15) {
+    this.ttlMs = ttlMinutes * 60 * 1000;
+  }
+
+  get(key: string): T | null {
+    const entry = this.cache.get(key);
+    if (!entry) return null;
+    
+    if (Date.now() > entry.expiresAt) {
+      this.cache.delete(key);
+      console.log(`[Cache] Entry expired for key: ${key}`);
+      return null;
+    }
+    
+    console.log(`[Cache] HIT for key: ${key}, age: ${Math.round((Date.now() - entry.timestamp) / 1000)}s`);
+    return entry.data;
+  }
+
+  set(key: string, data: T): void {
+    const now = Date.now();
+    this.cache.set(key, {
+      data,
+      timestamp: now,
+      expiresAt: now + this.ttlMs,
+    });
+    console.log(`[Cache] SET for key: ${key}, TTL: ${this.ttlMs / 1000}s`);
+  }
+
+  clear(): void {
+    this.cache.clear();
+    console.log("[Cache] Cleared all entries");
+  }
+
+  getStats(): { size: number; ttlMinutes: number } {
+    return {
+      size: this.cache.size,
+      ttlMinutes: this.ttlMs / 60000,
+    };
+  }
+}
+
+// Create a cache instance with 15-minute TTL
+const tweetsCache = new SimpleCache<{
+  user: { id: string; username: string; name: string };
+  tweets: any[];
+}>(15);
+
+// ============================================
+// X API Helper Function
+// ============================================
 async function fetchXTweets(username: string, maxResults: number = 5) {
   const bearerToken = process.env.X_BEARER_TOKEN;
   
@@ -90,6 +152,31 @@ async function fetchXTweets(username: string, maxResults: number = 5) {
   };
 }
 
+// ============================================
+// Cached X API Fetch with Fallback
+// ============================================
+async function getCachedTweets(username: string, maxResults: number) {
+  const cacheKey = `tweets:${username}:${maxResults}`;
+  
+  // Try to get from cache first
+  const cached = tweetsCache.get(cacheKey);
+  if (cached) {
+    return { ...cached, fromCache: true };
+  }
+  
+  // Cache miss - fetch from API
+  console.log(`[Cache] MISS for key: ${cacheKey}, fetching from X API...`);
+  const freshData = await fetchXTweets(username, maxResults);
+  
+  // Store in cache
+  tweetsCache.set(cacheKey, freshData);
+  
+  return { ...freshData, fromCache: false };
+}
+
+// ============================================
+// Router Definition
+// ============================================
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
@@ -104,7 +191,7 @@ export const appRouter = router({
     }),
   }),
 
-  // X (Twitter) API router
+  // X (Twitter) API router with caching
   x: router({
     getTweets: publicProcedure
       .input(
@@ -118,7 +205,8 @@ export const appRouter = router({
         const maxResults = input?.maxResults || 5;
         
         try {
-          return await fetchXTweets(username, maxResults);
+          const result = await getCachedTweets(username, maxResults);
+          return result;
         } catch (error) {
           console.error("Error fetching tweets:", error);
           // Return empty data on error so frontend can show fallback
@@ -126,9 +214,21 @@ export const appRouter = router({
             user: null,
             tweets: [],
             error: error instanceof Error ? error.message : "Failed to fetch tweets",
+            fromCache: false,
           };
         }
       }),
+    
+    // Endpoint to get cache stats (useful for debugging)
+    getCacheStats: publicProcedure.query(() => {
+      return tweetsCache.getStats();
+    }),
+    
+    // Endpoint to clear cache (admin use)
+    clearCache: publicProcedure.mutation(() => {
+      tweetsCache.clear();
+      return { success: true, message: "Cache cleared" };
+    }),
   }),
 });
 
