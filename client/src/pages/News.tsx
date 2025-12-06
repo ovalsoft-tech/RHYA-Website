@@ -125,7 +125,7 @@ export default function News() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16 bg-gray-50">
+    <div className="pt-24 pb-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">News & Updates</h1>

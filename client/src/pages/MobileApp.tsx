@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { useEffect, useState } from "react";
 
 export default function MobileApp() {
@@ -17,8 +17,8 @@ export default function MobileApp() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
+    <div className="bg-background">
+      
       
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto px-4">
@@ -95,7 +95,7 @@ export default function MobileApp() {
         </div>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

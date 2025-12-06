@@ -3,8 +3,8 @@ import { useRoute, Link } from "wouter";
 import { client, urlFor } from "@/lib/sanity";
 import { Calendar, User, ArrowLeft, Facebook, Twitter, Linkedin, Share2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 
 interface NewsPost {
   _id: string;
@@ -139,8 +139,8 @@ export default function NewsPost() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
+    <div className="bg-white">
+      
       
       <article className="pt-32 pb-16">
         {/* Hero Image */}
@@ -240,7 +240,7 @@ export default function NewsPost() {
         </div>
       </article>
       
-      <Footer />
+      
     </div>
   );
 }

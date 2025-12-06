@@ -11,6 +11,8 @@ import News from "./pages/News";
 import NewsPost from "@/pages/NewsPost";
 import MobileApp from "@/pages/MobileApp";
 import Ambassadors from "@/pages/Ambassadors";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 function Router() {
@@ -47,7 +49,13 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow">
+              <Router />
+            </main>
+            <Footer />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

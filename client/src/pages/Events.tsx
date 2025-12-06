@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, MapPin, ArrowRight, Video, Loader2 } from "lucide-react";
 import { client, urlFor } from "@/lib/sanity";
@@ -135,8 +135,8 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-gray-50">
-      <Navbar />
+    <div className="font-sans bg-gray-50">
+      
       <main className="flex-grow pt-20">
         {/* Hero Section */}
         <section className="bg-primary text-white py-20 relative overflow-hidden">
@@ -204,7 +204,7 @@ export default function Events() {
           </div>
         </section>
       </main>
-      <Footer />
+      
     </div>
   );
 }

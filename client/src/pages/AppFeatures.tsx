@@ -1,12 +1,12 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { Button } from "@/components/ui/button";
 import { Shield, Trophy, Users, BarChart3, Smartphone, Globe, Zap, Lock } from "lucide-react";
 
 export default function AppFeatures() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <Navbar />
+    <div className="font-sans">
+      
       <main className="flex-grow pt-20">
         {/* Hero Section */}
         <section className="bg-secondary text-white py-20 relative overflow-hidden">
@@ -172,7 +172,7 @@ export default function AppFeatures() {
           </div>
         </section>
       </main>
-      <Footer />
+      
     </div>
   );
 }

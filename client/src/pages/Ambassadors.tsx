@@ -71,7 +71,7 @@ const ambassadorCategories: AmbassadorCategory[] = [
 
 export default function Ambassadors() {
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
+    <div className="bg-background pt-24 pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">

@@ -1,15 +1,15 @@
-import Navbar from "@/components/Navbar";
+
 import Hero from "@/components/Hero";
 import PriorityAreas from "@/components/PriorityAreas";
 import AppShowcase from "@/components/AppShowcase";
 import Benefits from "@/components/Benefits";
 import SocialFeed from "@/components/SocialFeed";
-import Footer from "@/components/Footer";
+
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <Navbar />
+    <div className="font-sans">
+      
       <main className="flex-grow">
         <Hero />
         <AppShowcase />
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
+      
     </div>
   );
 }
