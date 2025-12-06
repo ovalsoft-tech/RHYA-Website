@@ -19,7 +19,7 @@ export default function Home() {
         
         {/* CTA Section */}
         <section className="py-20 bg-primary relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" style={{display: 'none'}}></div>
+
           <div className="container mx-auto px-4 relative z-10 text-center">
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
               Ready to Make a Difference?
