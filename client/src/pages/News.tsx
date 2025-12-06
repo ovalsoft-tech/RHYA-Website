@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { client, urlFor } from "@/lib/sanity";
-import { Calendar, User, ArrowRight, Loader2, Filter } from "lucide-react";
+import { Calendar, User, ArrowRight, Loader2, Filter, Search, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "wouter";
+import { toast } from "sonner";
 
 interface NewsPost {
   _id: string;
@@ -21,6 +24,7 @@ export default function News() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const categories = ["All", "Technology", "Events", "Partnership", "Community", "Press Release"];
 
@@ -103,6 +107,11 @@ export default function News() {
         setFilteredPosts(fallbackData);
         // Only show error if we want to alert the user, otherwise fail silently to fallback
         // setError("Using offline content. Please check your connection for live updates.");
+        toast.error("Using offline content", {
+          description: "Could not connect to live news server. Showing cached data.",
+          icon: <AlertCircle className="h-5 w-5 text-red-500" />,
+          duration: 5000,
+        });
       } finally {
         setLoading(false);
       }
@@ -112,20 +121,25 @@ export default function News() {
   }, []);
 
   useEffect(() => {
-    if (activeCategory === "All") {
-      setFilteredPosts(posts);
-    } else {
-      setFilteredPosts(posts.filter(post => post.category === activeCategory));
+    let result = posts;
+    
+    // Filter by category
+    if (activeCategory !== "All") {
+      result = result.filter(post => post.category === activeCategory);
     }
-  }, [activeCategory, posts]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen pt-24 flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
+    
+    // Filter by search query
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(post => 
+        post.title.toLowerCase().includes(query) || 
+        post.excerpt.toLowerCase().includes(query) ||
+        post.author.toLowerCase().includes(query)
+      );
+    }
+    
+    setFilteredPosts(result);
+  }, [activeCategory, searchQuery, posts]);
 
   return (
     <div className="pt-24 pb-16 bg-gray-50">
@@ -137,21 +151,38 @@ export default function News() {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === category
-                  ? "bg-primary text-white shadow-md transform scale-105"
-                  : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Search and Filter */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 max-w-7xl mx-auto">
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-primary text-white shadow-md"
+                    : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-72">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search news..."
+              className="pl-10 rounded-full border-gray-200 focus:border-primary focus:ring-primary"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
         </div>
 
         {error && (
@@ -169,7 +200,27 @@ export default function News() {
           </div>
         )}
 
-        {filteredPosts.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 h-full flex flex-col">
+                <Skeleton className="h-48 w-full" />
+                <div className="p-6 flex flex-col flex-grow space-y-4">
+                  <div className="flex gap-4">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-24" />
+                  </div>
+                  <Skeleton className="h-8 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-2/3" />
+                  <div className="mt-auto pt-4">
+                    <Skeleton className="h-10 w-full rounded-md" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : filteredPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {filteredPosts.map((post) => (
               <article key={post._id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col h-full border border-gray-100">

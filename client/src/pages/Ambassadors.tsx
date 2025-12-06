@@ -99,11 +99,11 @@ export default function Ambassadors() {
               </div>
 
               {category.members.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="flex flex-wrap justify-center gap-6">
                   {category.members.map((member, mIdx) => (
                     <div
                       key={mIdx}
-                      className="bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border/50 group"
+                      className="bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border/50 group w-full sm:w-64 md:w-56 lg:w-60"
                     >
                       <div className="aspect-[4/5] bg-muted relative overflow-hidden">
                         {/* Replace with actual Image component or img tag */}

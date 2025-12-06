@@ -27,12 +27,11 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "News", href: "/news" },
-    { name: "Priority Areas", href: "/#priority-areas" },
-    { name: "Benefits", href: "/#benefits" },
     { name: "Ambassadors", href: "/ambassadors" },
     { name: "Mobile App", href: "/app-features" },
+    { name: "News", href: "/news" },
     { name: "Events", href: "/events" },
+    { name: "Benefits", href: "/#benefits" },
     { name: "Contact", href: "/#contact" },
   ];
 
@@ -76,7 +75,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 z-50 relative">
-          <div className="h-10 md:h-12 w-auto">
+          <div className="h-14 md:h-20 w-auto">
             <img src="/upload/Logo-1.svg" alt="RHYA Logo" className="h-full w-auto" />
           </div>
         </Link>
