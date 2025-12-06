@@ -4,6 +4,7 @@ import { useIsMobile } from "@/hooks/useMobile";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import SignUpModal from "@/components/SignUpModal";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -98,12 +99,15 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
             </a>
           ))}
-          <Button 
-            className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            onClick={() => window.open("#", "_blank")}
-          >
-            Join Now
-          </Button>
+          <SignUpModal 
+            trigger={
+              <Button 
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-full px-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
+              >
+                Join Now
+              </Button>
+            }
+          />
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -140,12 +144,15 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-10 py-6 text-lg mt-4 w-full max-w-xs shadow-xl"
-              onClick={() => window.open("#", "_blank")}
-            >
-              Join Now
-            </Button>
+            <SignUpModal 
+              trigger={
+                <Button 
+                  className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-10 py-6 text-lg mt-4 w-full max-w-xs shadow-xl"
+                >
+                  Join Now
+                </Button>
+              }
+            />
           </div>
         </div>
       </div>

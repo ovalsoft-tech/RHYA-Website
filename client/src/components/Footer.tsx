@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import Newsletter from "./Newsletter";
 
@@ -37,13 +37,15 @@ export default function Footer() {
                 A grassroots-driven national movement mobilizing Nigerian youth to participate in national development through the Renewed Hope Agenda.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-accent hover:text-secondary transition-colors">
-                  <Twitter className="h-5 w-5" />
+                <a href="https://x.com/RH_Youth_" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-accent hover:text-secondary transition-colors">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </a>
                 <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-accent hover:text-secondary transition-colors">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-accent hover:text-secondary transition-colors">
+                <a href="https://www.instagram.com/renewedhopeyouthambassadors/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-accent hover:text-secondary transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
               </div>
@@ -75,7 +77,9 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">22, Samora Machel Street,<br />Asokoro, FCT-Abuja</span>
+                  <a href="https://maps.app.goo.gl/eCMkk8CRzNr1o7yH8" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                    22, Samora Machel Street,<br />Asokoro, FCT-Abuja
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-accent flex-shrink-0" />

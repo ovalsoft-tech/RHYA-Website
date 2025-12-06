@@ -8,7 +8,9 @@ import Home from "./pages/Home";
 import AppFeatures from "./pages/AppFeatures";
 import Events from "./pages/Events";
 import News from "./pages/News";
-import NewsPost from "./pages/NewsPost";
+import NewsPost from "@/pages/NewsPost";
+import MobileApp from "@/pages/MobileApp";
+import Ambassadors from "@/pages/Ambassadors";
 
 
 function Router() {
@@ -19,6 +21,8 @@ function Router() {
       <Route path={"/events"} component={Events} />
       <Route path={"/news"} component={News} />
       <Route path={"/news/:slug"} component={NewsPost} />
+      <Route path={"/mobile-app"} component={MobileApp} />
+      <Route path={"/ambassadors"} component={Ambassadors} />
       <Route path={"/404"} component={NotFound} />
       {/* Logo background transparency fixed */}
       {/* Sanity CMS integration complete */}

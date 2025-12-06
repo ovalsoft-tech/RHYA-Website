@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import SignUpModal from "@/components/SignUpModal";
 import { ArrowRight, Users, Zap, Globe } from "lucide-react";
 
 export default function Hero() {
@@ -31,14 +32,17 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button 
-              size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 h-14 rounded-full shadow-lg shadow-accent/20 transition-all hover:scale-105"
-              onClick={() => window.open("#", "_blank")}
-            >
-              Become an Ambassador
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <SignUpModal 
+              trigger={
+                <Button 
+                  size="lg" 
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 h-14 rounded-full shadow-lg shadow-accent/20 transition-all hover:scale-105"
+                >
+                  Become an Ambassador
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              }
+            />
             <Button 
               size="lg" 
               variant="outline" 

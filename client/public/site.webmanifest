@@ -1,0 +1,21 @@
+{
+  "name": "Renewed Hope Youth Ambassadors",
+  "short_name": "RHYA",
+  "description": "Empowering Nigerian youth to drive the Renewed Hope Agenda.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#009933",
+  "icons": [
+    {
+      "src": "/upload/Logo-3.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/upload/Logo-3.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
