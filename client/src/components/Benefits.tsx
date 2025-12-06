@@ -57,7 +57,7 @@ export default function Benefits() {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-white font-bold text-lg px-10 h-14 rounded-full shadow-lg shadow-primary/20"
-                onClick={() => window.open("#", "_blank")}
+                onClick={() => window.open("#", "_blank")} style={{display: 'none'}}
               >
                 Join the Movement
               </Button>
