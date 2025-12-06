@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import Newsletter from "./Newsletter";
+import SignUpModal from "@/components/SignUpModal";
 
 export default function Footer() {
   return (
@@ -68,7 +69,15 @@ export default function Footer() {
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Media Kit</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Registration Portal</a></li>
+                <li>
+                  <SignUpModal 
+                    trigger={
+                      <button className="text-gray-300 hover:text-white transition-colors text-left">
+                        Registration Portal
+                      </button>
+                    }
+                  />
+                </li>
               </ul>
             </div>
 
