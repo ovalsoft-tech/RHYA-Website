@@ -85,10 +85,7 @@ export default function Hero() {
           <div className="absolute -top-10 -right-10 bg-white p-4 rounded-2xl shadow-xl animate-bounce duration-[3000ms]">
             <Zap className="h-8 w-8 text-accent fill-accent" />
           </div>
-          <div className="absolute -bottom-5 -left-5 bg-secondary p-4 rounded-2xl shadow-xl animate-pulse" style={{display: 'none'}}>
-            <span className="text-primary font-bold text-xl">8</span>
-            <span className="block text-primary text-xs font-bold">Priority Areas</span>
-          </div>
+
         </div>
       </div>
       
