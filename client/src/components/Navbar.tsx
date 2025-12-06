@@ -30,6 +30,7 @@ export default function Navbar() {
     { name: "About", href: "/#about" },
     { name: "Priority Areas", href: "/#priority-areas" },
     { name: "Benefits", href: "/#benefits" },
+    { name: "Ambassadors", href: "/ambassadors" },
     { name: "Mobile App", href: "/app-features" },
     { name: "Events", href: "/events" },
     { name: "Contact", href: "/#contact" },
